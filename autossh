@@ -56,6 +56,7 @@ for server in $AUTO_SSH_CONFIG; do
         echo 'interact' >> $FILE
 		chmod a+x $FILE
 		$FILE
+		echo '' > $FILE
 		break;
 	fi
 done
