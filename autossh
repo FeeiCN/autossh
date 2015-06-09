@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# AUTO SSH
+# @author Feei <wufeifei[at]wufeifei.com>
+# @date   2014.05.08
+
+IP_USER_PASS_LIST="192.168.1.110|username|password \
+            feei.cn|root|password\
+		   wufeifei.com|feei|"
+
+BORDER_LINE="\033[1;31m############################################################ \033[0m"
+echo -e $BORDER_LINE
+echo -e "\033[1;31m#                     [AUTO SSH]                           # \033[0m"
+echo -e "\033[1;31m#                                                          # \033[0m"
+echo -e "\033[1;31m#                                                          # \033[0m"
+i=0;
+for server in $IP_USER_PASS_LIST; do
+	i=`expr $i + 1`
+	IP=`echo $server | gawk -F\| '{ print $1 }'`
+	NAME=`echo $server | gawk -F\| '{ print $2 }'`
+	LINE="\033[1;31m#"\ [$i]\ $IP':'$NAME
+	MAX_LINE_LENGTH=`expr ${#BORDER_LINE}`
+	CURRENT_LINE_LENGTH=`expr "${#LINE}"`
+	DIS_LINE_LENGTH=`expr $MAX_LINE_LENGTH - $CURRENT_LINE_LENGTH - 9`
+	echo -e $LINE"\c"
+	for n in $(seq $DIS_LINE_LENGTH);
+	do
+	    echo -e " \c"
+	done
+	echo -e "# \033[0m"
+done
+echo -e "\033[1;31m#                                                          # \033[0m"
+echo -e "\033[1;31m#                                                          # \033[0m"
+echo -e $BORDER_LINE
+
+no=0;
+
+until [ $no -gt 0 -a $no -le $i ] 2>/dev/null
+do
+    echo -e 'Server Number:\c'
+	read no
+done
+
+i=0
+for server in $IP_USER_PASS_LIST; do
+		
+	i=`expr $i + 1`
+	if [ $i -eq $no ] ; then
+		IP=`echo $server | gawk -F\| '{ print $1 }'`
+		NAME=`echo $server | gawk -F\| '{ print $2 }'`
+		PASS=`echo $server | gawk -F\| '{ print $3 }'`
+		# echo 'Login Server:' $NAME'@'$IP
+		sed "s/IP/$IP/;s/NAME/$NAME/;s/PASS/$PASS/"  autossh.t  > .login.sh
+		chmod a+x .login.sh
+		./.login.sh
+		break;
+	fi
+done
