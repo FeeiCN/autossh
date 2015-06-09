@@ -5,7 +5,7 @@ Auto Login SSH Server (expect-based)
 
 ```
 $ git clone https://github.com/wufeifei/autossh.git
-$ sudo cp autossh/* /usr/local/bin/
+$ sudo cp autossh/autossh /usr/local/bin/
 ```
 
 # Config
