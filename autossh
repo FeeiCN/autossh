@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# AUTO SSH
+# AUTO SSH - Auto Login SSH Server (expect-based)
 # @author Feei <wufeifei[at]wufeifei.com>
 # @date   2014.05.08
 
@@ -31,13 +31,17 @@ echo -e "\033[1;31m#                                                          # 
 echo -e "\033[1;31m#                                                          # \033[0m"
 echo -e $BORDER_LINE
 
-no=0;
-
-until [ $no -gt 0 -a $no -le $i ] 2>/dev/null
-do
-    echo -e 'Server Number:\c'
-	read no
-done
+# GET INPUT CHOSEN OR GET PARAM
+if [ "$1" != "" ]; then
+    no=$1
+else
+    no=0
+    until [ $no -gt 0 -a $no -le $i ] 2>/dev/null
+    do
+        echo -e 'Server Number:\c'
+        read no
+    done
+fi
 
 i=0
 for server in $AUTO_SSH_CONFIG; do
