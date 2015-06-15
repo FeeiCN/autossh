@@ -14,9 +14,10 @@ echo -e "\033[1;31m#                                                          # 
 i=0;
 for server in $AUTO_SSH_CONFIG; do
 	i=`expr $i + 1`
-	IP=`echo $server | awk -F\| '{ print $1 }'`
-	NAME=`echo $server | awk -F\| '{ print $2 }'`
-	LINE="\033[1;31m#"\ [$i]\ $IP':'$NAME
+	SERVER=`echo $server | awk -F\| '{ print $1 }'`
+	IP=`echo $server | awk -F\| '{ print $2 }'`
+	NAME=`echo $server | awk -F\| '{ print $3 }'`
+	LINE="\033[1;31m#"\ [$i]\ $SERVER\ -\ $IP':'$NAME
 	MAX_LINE_LENGTH=`expr ${#BORDER_LINE}`
 	CURRENT_LINE_LENGTH=`expr "${#LINE}"`
 	DIS_LINE_LENGTH=`expr $MAX_LINE_LENGTH - $CURRENT_LINE_LENGTH - 9`
@@ -48,9 +49,9 @@ for server in $AUTO_SSH_CONFIG; do
 		
 	i=`expr $i + 1`
 	if [ $i -eq $no ] ; then
-		IP=`echo $server | awk -F\| '{ print $1 }'`
-		NAME=`echo $server | awk -F\| '{ print $2 }'`
-		PASS=`echo $server | awk -F\| '{ print $3 }'`
+		IP=`echo $server | awk -F\| '{ print $2 }'`
+		NAME=`echo $server | awk -F\| '{ print $3 }'`
+		PASS=`echo $server | awk -F\| '{ print $4 }'`
 		FILE='/tmp/.login.sh'
         echo '#!/usr/bin/expect -f' > $FILE
         echo 'set timeout 30' >> $FILE
