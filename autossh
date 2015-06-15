@@ -52,10 +52,11 @@ for server in $AUTO_SSH_CONFIG; do
 		IP=`echo $server | awk -F\| '{ print $2 }'`
 		NAME=`echo $server | awk -F\| '{ print $3 }'`
 		PASS=`echo $server | awk -F\| '{ print $4 }'`
+		PORT=`echo $server | awk -F\| '{ print $5 }'`
 		FILE='/tmp/.login.sh'
         echo '#!/usr/bin/expect -f' > $FILE
         echo 'set timeout 30' >> $FILE
-        echo "spawn ssh -p10022 -l "$NAME $IP >> $FILE
+        echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         echo 'expect "password:"' >> $FILE
         echo 'send   '$PASS"\r" >> $FILE
         echo 'interact' >> $FILE
