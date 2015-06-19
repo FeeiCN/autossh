@@ -11,7 +11,7 @@ $ sudo cp autossh/autossh /usr/local/bin/
 # Config
 
 ```
-$ cat ~/.autossh
+$ cat ~/.autosshrc
 sername|192.168.1.110|root|password|port
 wufeifei|wufeifei.com|root|password|22
 ```
