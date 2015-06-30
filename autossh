@@ -54,6 +54,9 @@ for server in $AUTO_SSH_CONFIG; do
 		PASS=`echo $server | awk -F\| '{ print $4 }'`
 		PORT=`echo $server | awk -F\| '{ print $5 }'`
 		FILE='/tmp/.login.sh'
+		if [ "$PORT" == "" ]; then
+			PORT=10022
+		fi
         echo '#!/usr/bin/expect -f' > $FILE
         echo 'set timeout 30' >> $FILE
         echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
