@@ -53,16 +53,23 @@ for server in $AUTO_SSH_CONFIG; do
 		NAME=`echo $server | awk -F\| '{ print $3 }'`
 		PASS=`echo $server | awk -F\| '{ print $4 }'`
 		PORT=`echo $server | awk -F\| '{ print $5 }'`
+		ISBASTION=`echo $server | awk -F\| '{ print $6 }'`
 		FILE='/tmp/.login.sh'
 		if [ "$PORT" == "" ]; then
 			PORT=10022
 		fi
-        echo '#!/usr/bin/expect -f' > $FILE
-        echo 'set timeout 30' >> $FILE
-        echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
-        echo 'expect "password:"' >> $FILE
-        echo 'send   '$PASS"\r" >> $FILE
-        echo 'interact' >> $FILE
+        	echo '#!/usr/bin/expect -f' > $FILE
+        	echo 'set timeout 30' >> $FILE
+        	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
+        	echo 'expect "password:"' >> $FILE
+        	echo 'send   '$PASS"\r" >> $FILE
+		if [ "$ISBASTION" != "" ]; then
+        		echo 'expect "IP>:"' >> $FILE
+        		echo 'send   '$2"\r" >> $FILE
+        		echo 'expect "password:"' >> $FILE
+        		echo 'send   '$PASS"\r" >> $FILE
+        		echo 'interact' >> $FILE
+		fi
 		chmod a+x $FILE
 		$FILE
 		echo '' > $FILE
