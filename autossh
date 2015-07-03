@@ -63,7 +63,7 @@ for server in $AUTO_SSH_CONFIG; do
         	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         	echo 'expect "password:"' >> $FILE
         	echo 'send   '$PASS"\r" >> $FILE
-		if [ "$ISBASTION" != "" ]; then
+		if [ "$ISBASTION" == 1 ]; then
         		echo 'expect "IP>:"' >> $FILE
         		echo 'send   '$2"\r" >> $FILE
         		echo 'expect "password:"' >> $FILE
