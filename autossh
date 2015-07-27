@@ -2,7 +2,7 @@
 
 # AUTO SSH - Auto Login SSH Server (expect-based)
 # @author Feei <wufeifei[at]wufeifei.com>
-# @date   2014.05.08
+# @date   05.08.2014
 
 AUTO_SSH_CONFIG=`cat ~/.autosshrc`
 
@@ -46,7 +46,7 @@ fi
 
 i=0
 for server in $AUTO_SSH_CONFIG; do
-		
+
 	i=`expr $i + 1`
 	if [ $i -eq $no ] ; then
 		IP=`echo $server | awk -F\| '{ print $2 }'`
