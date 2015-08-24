@@ -1,8 +1,12 @@
 #!/bin/bash
 
 # AUTO SSH - Auto Login SSH Server (expect-based)
-# @author Feei <wufeifei[at]wufeifei.com>
-# @date   05.08.2014
+#
+# @category Main
+# @package  AutoSSH
+# @author   Feei <wufeifei@wufeifei.com>
+# @license  Copyright (C) 2015 Feei. All Rights Reserved
+# @link     http://github.com/wufeifei/autossh
 
 AUTO_SSH_CONFIG=`cat ~/.autosshrc`
 
@@ -46,7 +50,6 @@ fi
 
 i=0
 for server in $AUTO_SSH_CONFIG; do
-
 	i=`expr $i + 1`
 	if [ $i -eq $no ] ; then
 		IP=`echo $server | awk -F\| '{ print $2 }'`
@@ -63,16 +66,22 @@ for server in $AUTO_SSH_CONFIG; do
         	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         	echo 'expect "password:"' >> $FILE
         	echo 'send   '$PASS"\r" >> $FILE
-		if [ "$ISBASTION" == 1 ] && [ "$2" != "" ]; then
-        		echo 'expect "IP>:"' >> $FILE
-        		echo 'send   '$2"\r" >> $FILE
-        		echo 'expect "password:"' >> $FILE
-        		echo 'send   '$PASS"\r" >> $FILE
-		fi
+			if [ "$ISBASTION" == 1 ] && [ "$2" != "" ]; then
+	        		echo 'expect "IP>:"' >> $FILE
+	        		echo 'send   '$2"\r" >> $FILE
+	        		echo 'expect "password:"' >> $FILE
+	        		echo 'send   '$PASS"\r" >> $FILE
+					if [ "$3" == 'sudo' ]; then
+						echo 'expect "@"' >> $FILE
+						echo 'send   "sudo su\r"' >> $FILE
+						echo 'expect "password for"' >> $FILE
+						echo 'send   '$PASS"\r" >> $FILE
+					fi
+			fi
         	echo 'interact' >> $FILE
 		chmod a+x $FILE
 		$FILE
-		#echo '' > $FILE
+		echo '' > $FILE
 		break;
 	fi
 done
