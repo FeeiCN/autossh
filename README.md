@@ -44,3 +44,9 @@ OR Bastion Host
 ```
 $ autossh 1 10.12.0.123
 ```
+
+Auto SUDO
+
+```
+$ autossh 1 10.11.0.123 sudo
+```
