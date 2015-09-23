@@ -79,9 +79,7 @@ for server in $AUTO_SSH_CONFIG; do
 		fi
         	echo '#!/usr/bin/expect -f' > $FILE
         	echo 'set timeout 30' >> $FILE
-        	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
-        	echo 'expect "Are you sure you want to continue connecting"' >> $FILE
-        	echo 'send "yes' >> $FILE
+        	echo "spawn ssh -o \"StrictHostKeyChecking no\" -p$PORT -l "$NAME $IP >> $FILE
         	if [ "$PASS" != "" ]; then
 	        	echo 'expect "password:"' >> $FILE
 	        	echo 'send   '$PASS"\r" >> $FILE
