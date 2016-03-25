@@ -12,7 +12,7 @@ $ sudo cp autossh/autossh /usr/local/bin/
 
 ```
 $ cat ~/.autosshrc
-sername|192.168.1.110|root|password|port|is_bastion
+server name|192.168.1.110|root|password|port|is_bastion
 wufeifei|wufeifei.com|root|password|22|1
 ```
 
@@ -37,6 +37,12 @@ OR
 
 ```
 $ autossh 1
+```
+
+OR Auto Sudo
+
+```
+$ autossh 3 sudo
 ```
 
 OR Bastion Host
