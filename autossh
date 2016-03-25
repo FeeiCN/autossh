@@ -79,21 +79,28 @@ for server in $AUTO_SSH_CONFIG; do
 		fi
         	echo '#!/usr/bin/expect -f' > $FILE
         	echo 'set timeout 30' >> $FILE
-        	echo "spawn ssh -o \"StrictHostKeyChecking no\" -p$PORT -l "$NAME $IP >> $FILE
+        	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         	if [ "$PASS" != "" ]; then
 	        	echo 'expect "password:"' >> $FILE
 	        	echo 'send   '$PASS"\r" >> $FILE
-				if [ "$ISBASTION" == 1 ] && [ "$2" != "" ]; then
-		        		echo 'expect "IP>:"' >> $FILE
-		        		echo 'send   '$2"\r" >> $FILE
-		        		echo 'expect "password:"' >> $FILE
-		        		echo 'send   '$PASS"\r" >> $FILE
-						if [ "$3" == 'sudo' ]; then
-							echo 'expect "@"' >> $FILE
-							echo 'send   "sudo su\r"' >> $FILE
-							echo 'expect "password for"' >> $FILE
-							echo 'send   '$PASS"\r" >> $FILE
-						fi
+				if [ "$2" == 'sudo' ]; then
+					echo 'expect "@"' >> $FILE
+					echo 'send   "sudo su\r"' >> $FILE
+					echo 'expect "password for"' >> $FILE
+					echo 'send   '$PASS"\r" >> $FILE
+				else
+					if [ "$ISBASTION" == 1 ] && [ "$2" != "" ]; then
+		        			echo 'expect "IP>:"' >> $FILE
+		        			echo 'send   '$2"\r" >> $FILE
+		        			echo 'expect "password:"' >> $FILE
+		        			echo 'send   '$PASS"\r" >> $FILE
+							if [ "$3" == 'sudo' ]; then
+								echo 'expect "@"' >> $FILE
+								echo 'send   "sudo su\r"' >> $FILE
+								echo 'expect "password for"' >> $FILE
+								echo 'send   '$PASS"\r" >> $FILE
+							fi
+					fi
 				fi
 			fi
         	echo 'interact' >> $FILE
