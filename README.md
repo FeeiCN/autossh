@@ -13,7 +13,7 @@ $ sudo cp autossh/autossh /usr/local/bin/
 ```
 $ cat ~/.autosshrc
 server name|192.168.1.110|root|password|port|is_bastion
-wufeifei|wufeifei.com|root|password|22|1
+wufeifei|192.168.1.1|root|password|22|1
 ```
 
 # Usage
