@@ -12,8 +12,8 @@ $ sudo cp autossh/autossh /usr/local/bin/
 
 ```
 $ cat ~/.autosshrc
-sername|192.168.1.110|root|password|port|is_bastion
-wufeifei|wufeifei.com|root|password|22|1
+server name|192.168.1.110|root|password|port|is_bastion
+wufeifei|192.168.1.1|root|password|22|1
 ```
 
 # Usage
@@ -39,13 +39,19 @@ OR
 $ autossh 1
 ```
 
+OR Auto Sudo
+
+```
+$ autossh 3 sudo
+```
+
 OR Bastion Host
 
 ```
 $ autossh 1 10.12.0.123
 ```
 
-Auto SUDO
+OR Auto Sudo With Bastion
 
 ```
 $ autossh 1 10.11.0.123 sudo
