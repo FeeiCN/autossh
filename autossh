@@ -90,7 +90,7 @@ for server in $AUTO_SSH_CONFIG; do
 					echo 'send   '$PASS"\r" >> $FILE
 				else
 					if [ "$ISBASTION" == 1 ] && [ "$2" != "" ]; then
-		        			echo 'expect "IP>:"' >> $FILE
+		        			echo 'expect ">"' >> $FILE
 		        			echo 'send   '$2"\r" >> $FILE
 		        			echo 'expect "password:"' >> $FILE
 		        			echo 'send   '$PASS"\r" >> $FILE
