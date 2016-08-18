@@ -10,11 +10,17 @@ $ sudo cp autossh/autossh /usr/local/bin/
 
 # Config
 
-```
+```bash
 $ cat ~/.autosshrc
-server name|192.168.1.110|root|password|port|is_bastion
+server_name|192.168.1.110|root|password|port|is_bastion
+```
+
+# Example
+```bash
+$ cat ~/.autosshrc
 wufeifei|192.168.1.1|root|password|22|1
 ```
+
 
 # Usage
 
