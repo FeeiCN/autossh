@@ -1,7 +1,14 @@
-# autossh
+# AutoSSH
 Auto Login SSH Server (expect-based)
 
-# Install
+# Install Dependencies
+```
+Linux
+yum install expect
+apt-get install expect
+```
+
+# Install AutoSSH
 
 ```
 $ git clone https://github.com/wufeifei/autossh.git
