@@ -11,7 +11,7 @@ apt-get install expect
 # Install AutoSSH
 
 ```
-$ git clone https://github.com/wufeifei/autossh.git
+$ git clone https://github.com/FeeiCN/autossh.git
 $ sudo cp autossh/autossh /usr/local/bin/
 ```
 
@@ -64,7 +64,7 @@ OR Bastion Host
 $ autossh 1 10.12.0.123
 ```
 
-OR Auto Sudo With Bastion
+OR Auto Sudo With Bastion(JumpServer)
 
 ```
 $ autossh 1 10.11.0.123 sudo
