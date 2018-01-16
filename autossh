@@ -79,6 +79,11 @@ for server in $AUTO_SSH_CONFIG; do
 		fi
         	echo '#!/usr/bin/expect -f' > $FILE
         	echo 'set timeout 30' >> $FILE
+			echo 'trap {' >> $FILE
+            echo '    set rows [stty rows]' >> $FILE
+            echo '    set cols [stty columns]' >> $FILE
+            echo '    stty rows $rows columns $cols < $spawn_out(slave,name)' >> $FILE
+            echo '} WINCH' >> $FILE
         	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         	if [ "$PASS" != "" ]; then
 	        	echo 'expect "password:"' >> $FILE
