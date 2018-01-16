@@ -4,12 +4,12 @@
 #
 # @category Main
 # @package  AutoSSH
-# @author   Feei <wufeifei@wufeifei.com>
+# @author   Feei <feei@feei.cn>
 # @license  Copyright (C) 2015 Feei. All Rights Reserved
-# @link     http://github.com/wufeifei/autossh
+# @link     http://github.com/FeeiCN/autossh
 # @install
 #
-# $ git clone https://github.com/wufeifei/autossh.git
+# $ git clone https://github.com/FeeiCN/autossh.git
 # $ sudo cp autossh/autossh /usr/local/bin/
 # $ 'server name|192.168.1.1|root|password|22|0' > ~/.autosshrc
 #
