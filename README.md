@@ -69,3 +69,7 @@ OR Auto Sudo With Bastion(JumpServer)
 ```
 $ autossh 1 10.11.0.123 sudo
 ```
+
+## Reference
+
+- [免密登陆SSH](http://feei.cn/免密登陆SSH)
