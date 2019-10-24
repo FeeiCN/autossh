@@ -20,6 +20,16 @@ $ sudo cp autossh/autossh /usr/local/bin/
 ```bash
 $ cat ~/.autosshrc
 server_name|192.168.1.110|root|password|port|is_bastion
+
+```
+
+if your passwor contains `|`, you shoud use config `&#124;` replace `|`.
+
+for example: if your password like `hello|world`,
+```
+# \ use for escape
+$ cat ~/.autosshrc
+server_name|192.168.1.110|root|hello\&#124\;|port|is_bastion
 ```
 
 # Example
