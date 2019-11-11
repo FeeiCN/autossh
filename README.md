@@ -11,7 +11,7 @@ apt-get install expect
 # Install AutoSSH
 
 ```
-$ git clone https://github.com/FeeiCN/autossh.git
+$ git clone https://github.com/weiyiysw/autossh.git
 $ sudo cp autossh/autossh /usr/local/bin/
 ```
 
