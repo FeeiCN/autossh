@@ -86,8 +86,15 @@ for server in $AUTO_SSH_CONFIG; do
             echo '} WINCH' >> $FILE
         	echo "spawn ssh -p$PORT -l "$NAME $IP >> $FILE
         	if [ "$PASS" != "" ]; then
-	        	echo 'expect "password:"' >> $FILE
-	        	echo 'send   '$PASS"\r" >> $FILE
+			# 如果密码中含有 |, 对|编码 &#124; 进行解码
+			PASS=${PASS//&#124;/|}
+			echo 'expect {' >> $FILE
+			echo '  "yes/no" {send "yes\r";exp_continue}' >> $FILE
+			echo '  "password:"' >> $FILE
+			echo '  {send '"$PASS\r}" >> $FILE
+			echo '}' >> $FILE
+	        	#echo 'expect "password:"' >> $FILE
+	        	#echo 'send   '$PASS"\r" >> $FILE
 				if [ "$2" == 'sudo' ]; then
 					echo 'expect "@"' >> $FILE
 					echo 'send   "sudo su\r"' >> $FILE

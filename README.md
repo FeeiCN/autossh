@@ -11,7 +11,7 @@ apt-get install expect
 # Install AutoSSH
 
 ```
-$ git clone https://github.com/FeeiCN/autossh.git
+$ git clone https://github.com/weiyiysw/autossh.git
 $ sudo cp autossh/autossh /usr/local/bin/
 ```
 
@@ -20,6 +20,15 @@ $ sudo cp autossh/autossh /usr/local/bin/
 ```bash
 $ cat ~/.autosshrc
 server_name|192.168.1.110|root|password|port|is_bastion
+
+```
+
+if your passwor contains `|`, you shoud use config `&#124;` replace `|`.
+
+for example: if your password like `hello|world`,
+```
+$ cat ~/.autosshrc
+server_name|192.168.1.110|root|hello&#124;|port|is_bastion
 ```
 
 # Example
